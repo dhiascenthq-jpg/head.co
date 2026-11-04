@@ -256,7 +256,7 @@ select.inp,input.inp{padding:8px 10px;border:1px solid var(--line);border-radius
    supaya semua telefon terus bersambung tanpa perlu set.
    ========================================================= */
 const DEFAULT_API = 'https://script.google.com/macros/s/AKfycbydUt_KRI-nETh2dCkpGrvaWTfUxeeB28sCKl-kMhcU1q7XelwUvNLfPaEO0ZdnAVaG/exec';
-const APP_VER = '1.2.0';
+const APP_VER = '1.3.0';
 
 /* ---------- storage (selamat) ---------- */
 const MEM = {};
@@ -311,6 +311,7 @@ const IC = {
   star: '<path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>',
   shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
   bolt: '<path d="M13 2L3 14h9l-1 8 10-12h-9z"/>',
+  money: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>',
   wallet: '<path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><path d="M16 14h.01"/>',
   cal: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'
 };
@@ -319,6 +320,7 @@ const ic = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24">${IC[n] |
 /* ======================= DATA CONTOH (preview) =======================
    Sales & Ads = angka SEBENAR Oktober 2026 dari Company Sales & Profit Dashboard (1–29 Okt).
    Host = contoh sahaja. Bila disambung ke Apps Script, semua data datang terus dari sheet. */
+const DEMO_HIST={"2025-09":[[387.25,0,37.25],[1771.3,1771.3,0],[6491.8,6491.8,0],[3020.01,2570.4,299.61],[1605.05,1449.05,0],[3006.68,2889.9,116.78],[0,0,0],[2114.8,1139.8,0],[1362.0,923.0,0],[2461.29,2461.29,0],[2929.68,1534.04,120.64],[1860.0,1801.0,0],[1898.2,1898.2,0],[5082.8,4732.8,0],[4213.0,4154.0,0],[2064.38,2064.38,0],[4363.51,3706.3,71.21],[2338.4,2338.4,0],[3239.83,3144.13,95.7],[816.15,149.0,93.15],[0,0,0],[9364.83,8197.03,117.8],[5025.5,4215.33,165.17],[2384.51,2229.0,96.51],[5799.06,5377.46,71.6],[6028.14,6003.81,24.33],[6320.53,6320.53,0],[5840.16,5336.71,191.45],[4224.01,3838.66,300.35],[5860.39,5510.39,0]],"2025-10":[[3676.16,3289.55,36.61],[6492.06,5253.53,168.53],[4384.22,4274.97,109.25],[3034.23,2729.9,24.33],[1498.33,1124.0,24.33],[5535.25,4951.0,24.25],[4464.03,3539.7,24.33],[3694.94,3646.12,48.82],[2284.12,2055.12,0],[2561.74,2467.0,94.74],[1394.73,764.0,70.73],[2422.18,92.0,96.18],[3649.95,3178.0,331.95],[3847.51,3728.0,119.51],[2857.58,2273.25,24.33],[5633.6,5585.6,48.0],[6958.89,6796.62,87.27],[7103.08,7033.79,69.29],[15914.51,15809.51,0],[8679.3,8620.3,0],[8550.41,7136.8,162.61],[8705.95,8646.95,0],[9212.29,8902.81,125.48],[6954.83,6353.1,426.73],[17587.7,15591.7,0],[8843.46,7286.5,70.96],[10551.83,9602.5,24.33],[12029.25,10681.4,47.85],[16518.58,14128.4,72.18],[11120.39,10592.9,168.49],[12107.32,11947.9,159.42]],"2025-11":[[13682.3,12434.7,188.6],[9237.57,8745.04,47.53],[5244.6,4907.6,0],[9749.6,8595.1,117.0],[7957.14,7520.3,164.84],[11279.52,10947.5,89.02],[11604.03,11140.81,47.22],[10124.93,10015.6,109.33],[7626.1,7420.1,0],[6321.22,5574.84,39.38],[8943.58,8773.27,45.31],[7777.66,7535.4,46.26],[5507.48,5186.9,46.58],[8327.52,8143.11,184.41],[12793.11,12793.11,0],[7496.93,5482.7,212.23],[4452.44,4359.6,92.84],[8183.05,8064.6,118.45],[7883.3,7739.3,0],[9426.66,9203.4,46.26],[10637.65,10604.2,33.45],[9082.3,8928.0,36.3],[7802.93,7692.5,110.43],[8100.28,7830.06,160.22],[4502.0,4502.0,0],[16740.21,14750.21,0],[9001.37,8862.26,139.11],[10480.77,10374.2,106.57],[9511.22,9296.6,214.62],[11426.9,11426.9,0]],"2026-01":[[7926.08],[5799.27],[5179.06],[2888.26],[5566.11],[4913.24],[5680.57],[4752.72],[5684.24],[4153.18],[4528.18],[4451.51],[6447.75],[5041.42],[4843.64],[4582.82],[5478.48],[6070.69],[3840.34],[3957.65],[5375.93],[3856.26],[5641.65],[5434.87],[4243.78],[5463.43],[6390.23],[7253.19],[13312.85],[10966.9],[6324.05]],"2026-02":[[7884.14],[5142.35],[9213.06],[6201.76],[8738.32],[9913.02],[7895.5],[9857.74],[10652.79],[11996.32],[11168.88],[11584.68],[8596.48],[7975.97],[9714.1],[9529.52],[7606.55],[4537.39],[5223.22],[7494.24],[10316.81],[9381.94],[4440.6],[9313.78],[16911.27],[14851.51],[9588.17],[13736.74]],"2026-03":[[8199.01],[6961.17],[8582.29],[11447.74],[9470.64],[5741.81],[11346.76],[8745.1],[5981.55],[6170.59],[5864.4],[5817.56],[5583.84],[5630.57],[5319.43],[6666.93],[4126.45],[5493.78],[4634.68],[3865.39],[906.05],[4237.68],[4729.65],[6180.91],[6853.96],[4823.06],[6988.7],[7604.23],[7437.9],[6047.86],[5189.47]],"2026-04":[[7306.2],[5234.4],[7102.43],[12717.58],[6502.15],[6880.3],[6970.64],[7047.3],[8132.69],[6274.63],[6909.9],[6328.51],[6220.62],[5318.89],[6899.39],[10269.24],[4918.73],[8654.48],[11715.57],[8585.92],[8148.7],[7850.76],[9539.69],[8067.5],[8124.18],[12475.14],[8619.6],[11923.8],[8988.4],[8262.77]],"2026-05":[[7674.44],[12120.21],[12769.47],[10548.51],[11098.88],[11922.05],[9814],[12690.18],[15194.11],[12348.97],[8035.8],[10338.02],[10740.9],[7858.32],[8576.6],[9314.62],[13801.19],[7626.02],[7109.89],[9530.8],[10296.95],[7753.59],[14365.89],[10110.53],[7553.89],[7420.47],[16390.51],[10788.8],[9935.41],[20093.84],[16570.84]],"2026-06":[[8707.68],[9635.64],[11932.21],[16097.97],[13116.75],[10367.72],[14405.87],[8279.02],[7522.66],[8181.33],[7852.09],[9834.68],[8559.22],[8876.78],[6276.68],[6818.02],[14966.28],[8094.6],[8523.51],[9983.8],[10142.23],[7477.45],[7552.69],[5774.92],[8631.85],[6497.85],[7191.33],[7305.88],[5268.32],[6851.21]],"2026-07":[[9975.88],[6792.23],[9540.59],[7245.46],[4787.51],[8097.19],[5868.64],[6568.93],[7047.54],[7715.16],[7685.18],[9272.77],[6798.74],[13135.4],[77105.75],[64245.49],[54983.16],[35728.66],[28448.97],[18585.89],[22563.4],[21089.68],[18430.01],[16345.07],[10126.52],[13908.82],[13631.79],[14738.13],[12442.07],[14796.66],[12408.12]],"2026-08":[[8292.07],[9548.96],[16075.39],[9653.38],[9708.75],[10542.98],[10938.88],[10781.24],[10259.37],[11749.7],[9144.99],[8021.52],[7895.44],[9466.44],[9153.73],[7804],[6190],[10694.31],[12217.78],[10920.04],[9879.32],[9181.31],[7116.07],[9601.69],[10669.4],[8006.61],[5489.38],[6161.4],[7564.08],[6782.35],[8645.35]],"2026-09":[[6330],[8193.9],[6949.42],[4613.91],[4451.06],[9078.29],[7302.52],[7739.63],[10013.37],[10972.3],[7414.46],[4859.13],[7788.15],[5885.12],[5592.87],[10615.06],[4469.26],[5247.02],[7448.18],[6541.63],[9369.93],[6837.85],[8621.77],[6944.28],[7276.5],[5605.35],[6701.48],[5381.82],[8220.31],[13067.3]]};
 function demoLive() {
   const S = [[7827.54,7608.54,219,0,166],[12408.73,11459.83,283,665.9,180],[8945.69,7235.69,321,1389,110],[9036.53,8756.53,280,0,123],[6643.05,6436.05,139,68,95],[9482.47,9296.47,186,0,213],[9180.23,7816.23,239,1125,181],[6782.10,6375.10,182,225,165],[9917.01,9593.01,256,68,227],[9313.24,8878.24,435,0,168],[7717.30,7641.30,76,0,123],[6353.99,6015.99,338,0,97],[5725.74,5682.74,43,0,97],[9347.43,8997.43,153,197,180],[6144.06,5854.06,290,0,117],[4631.02,4545.02,86,0,85],[9400.84,9318.84,82,0,242],[9023.67,8970.67,53,0,215],[10391.75,10356.75,35,0,284],[7727.86,7608.86,119,0,210],[9064.16,9064.16,0,0,270],[10660.2,10660.2,0,0,286],[7562.55,7562.55,0,0,200],[8990.73,8990.73,0,0,253],[8523.14,8523.14,0,0,219],[5849.03,5849.03,0,0,134],[5250.95,5250.95,0,0,153],[6168.41,6168.41,0,0,156],[5312.53,5312.53,0,0,138]];
   const A = [1646.51,2295.19,1391.36,1555.39,1251.2,1670.43,1510.21,1593.65,1808.14,1793.48,1111.67,936.38,865.63,2129.88,1224.13,757.26,1982.88,1260.06,2268.40,979.55,1315.42,1412.28,1038.61,1279.48,1170.23,869.71,766.97,882.77,730.64];
@@ -327,7 +329,9 @@ function demoLive() {
   const TL = ['Customer Service|Ayuni|Balas DM socmed', 'Customer Service|Ayuni|Balas DM TikTok', 'Customer Service|Ayuni|Balas seller chat', 'Customer Service|Ayuni|Posting Threads (feedback customer)', 'Content & Live|Nur Iman|Posting TikTok', 'Content & Live|Nur Iman|Sesi live', 'Content & Live|Nur Iman|Editing video', 'Head Admin|Amira|Update sales semua platform (sales semalam)', 'Head Admin|Amira|Update jadual hostlive', 'Head Admin|Amira|Update company expenses (jika ada)', 'Head Admin|Amira|Check sales host live', 'Head Admin|Amira|Buat flash sale', 'Order / Ops|Zulima|Proses order TikTok', 'Order / Ops|Zulima|Update stok masuk & keluar'];
   return {
     demo: true, dijana: new Date().toISOString(), hariIni: '2026-10-30', bulan: '2026-10',
-    months: { '2026-10': m }, daily, expCat: {},
+    months: { '2026-10': m }, daily, expCat: {}, hist: (() => { const h = {}; Object.keys(DEMO_HIST).forEach(ym => DEMO_HIST[ym].forEach((r, i) => { const t = r[0], tt = r[1] || 0, sh = r[2] || 0; h[ym + '-' + pad(i + 1)] = [t, tt, sh, r.length > 1 ? Math.round((t - tt - sh) * 100) / 100 : 0]; })); S.forEach((r, i) => h['2026-10-' + pad(i + 1)] = [r[0], r[1], r[2], r[3]]); return h; })(),
+    histBulan: { '2025-12': [261925.84, 255781.05, 2957.87, 3186.92] },
+    pnl: { '2025-09': { sales: 101873.26, kosProduk: 14330.62, ads: 8275.23, belanjaLain: 33474.02, untung: 45793.39 }, '2025-10': { sales: 218268.42, kosProduk: 32558.4, ads: 25286.93, belanjaLain: 76474.08, untung: 83949.01 }, '2025-11': { sales: 270904.37, kosProduk: 30860.52, ads: 56007.8, belanjaLain: 111185.52, untung: 72850.53 }, '2025-12': { sales: 261925.84, kosProduk: 34952.7, ads: 44440.19, belanjaLain: 96751.22, untung: 85781.73 } },
     hosts: [
       { nama: 'Saida', sesi: 41, jam: 82, sales: 31850, cost: 3920, target: 41000 }, { nama: 'Amy', sesi: 36, jam: 72, sales: 27410, cost: 3610, target: 36000 },
       { nama: 'Teyha', sesi: 19, jam: 38, sales: 14200, cost: 2105, target: 19000 }, { nama: 'Zul', sesi: 24, jam: 48, sales: 12960, cost: 1880, target: 24000 },
@@ -711,7 +715,7 @@ function marginBars(mg) {
 function marginCard() {
   const mg = S.live?.margin; if (!mg) return '';
   const k = mg.kadar || [];
-  return `<div class="card" style="margin-top:16px"><div class="card-h"><h3>${ic('chart')} Ke mana pergi setiap RM100 jualan</h3><span class="sp"></span><span class="xs muted">${esc(mg.tempoh || '')}</span><button class="btn ghost sm" data-go="sales" data-margin="1">Perincian</button></div>
+  return `<div class="card" style="margin-top:16px"><div class="card-h"><h3>${ic('chart')} Ke mana pergi setiap RM100 jualan</h3><span class="sp"></span><span class="xs muted">${esc(mg.tempoh || '')}</span><button class="btn ghost sm" data-go="kewangan" data-margin="1">Perincian</button></div>
     <div class="grid g3" style="gap:10px">${[['TikTok ambil (sebenar)', pct(k[0], 1), 'Kadar rasmi ~' + pct(k[2], 0)], ['Shopee ambil (anggaran)', pct(k[3], 1), 'Perlu disahkan'], ['Kos produk (resepi)', pct(k[4], 1), 'daripada jualan']].map(([a, b, c]) => `<div style="background:var(--soft);border-radius:12px;padding:10px 12px"><div class="xs muted">${a}</div><div class="b num" style="font-size:20px">${b}</div><div class="xs muted">${c}</div></div>`).join('')}</div>
     ${marginBars(mg)}
     <div class="xs muted" style="margin-top:8px">Untung sebelum gaji staf, sewa dan overhead. Sumber: sheet Margin TikTok & Shopee.</div></div>`;
@@ -865,13 +869,190 @@ function bindHutang() {
   on('[data-hist]', el => { const h = S.data.Hutang.find(x => x.id === el.dataset.hist); const bs = hutangInfo(h).bayar.sort((a, b) => (a.tarikh || '').localeCompare(b.tarikh || '')); const o = modal('Sejarah bayaran · ' + h.pemiutang, `<div class="list">${bs.map(b => `<div class="li"><div class="grow"><div class="ttl">${rm(num(b.jumlah), 2)}</div><div class="xs muted">${fdate(b.tarikh)} · oleh ${esc(b.oleh || '')}${b.nota ? ' · ' + esc(b.nota) : ''}</div></div>${isAdmin() ? `<button class="btn ghost sm" data-delb="${esc(b.id)}">Padam</button>` : ''}</div>`).join('')}</div>`); o.querySelectorAll('[data-delb]').forEach(x => x.onclick = async () => { closeModal(); if (await confirmBox('Padam rekod bayaran ini?')) del('Bayaran', x.dataset.delb).catch(e => toast(e.message, true)); }); });
 }
 
+
+/* ======================= KEWANGAN ======================= */
+const isoD = x => x.getFullYear() + '-' + pad(x.getMonth() + 1) + '-' + pad(x.getDate());
+const addDays = (d, n) => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() + n); return isoD(x); };
+const weekStart = d => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() - (x.getDay() + 6) % 7); return isoD(x); };
+function histDays() {
+  const h = S.live?.hist || {};
+  return Object.keys(h).sort().map(d => { const r = h[d] || []; return { d, t: num(r[0]), tt: num(r[1]), sh: num(r[2]), l: num(r[3]) }; });
+}
+function histAgg(mode) {
+  const days = histDays(); const hb = S.live?.histBulan || {}; const G = {};
+  const key = d => mode === 'minggu' ? weekStart(d) : mode === 'bulan' ? d.slice(0, 7) : d.slice(0, 4);
+  const add = (k, r, n, ym) => {
+    const g = G[k] = G[k] || { k, t: 0, tt: 0, sh: 0, l: 0, n: 0, bulanan: false, ms: new Set(), dari: null, hingga: null };
+    g.t += r.t; g.tt += r.tt; g.sh += r.sh; g.l += r.l; g.n += n; g.ms.add(ym);
+    return g;
+  };
+  days.forEach(r => { const g = add(key(r.d), r, 1, r.d.slice(0, 7)); if (!g.dari || r.d < g.dari) g.dari = r.d; if (!g.hingga || r.d > g.hingga) g.hingga = r.d; });
+  if (mode !== 'minggu') Object.keys(hb).forEach(ym => {
+    if (days.some(r => r.d.startsWith(ym))) return;
+    const v = hb[ym] || []; const g = add(mode === 'bulan' ? ym : ym.slice(0, 4), { t: num(v[0]), tt: num(v[1]), sh: num(v[2]), l: num(v[3]) }, 0, ym);
+    g.bulanan = true;
+  });
+  return Object.values(G).sort((a, b) => a.k.localeCompare(b.k));
+}
+function histChart(items, { every = 1, avg = null, h = 230 } = {}) {
+  if (!items.length) return '<div class="empty">Tiada data</div>';
+  const W = 720, H = h, pl = 48, pr = 8, pt = 12, pb = 26;
+  const max = Math.max(...items.map(i => i.v), avg || 0) * 1.08 || 1;
+  const raw = max / 4; const mag = Math.pow(10, Math.floor(Math.log10(raw))); const step = [1, 2, 2.5, 5, 10].map(x => x * mag).find(x => x >= raw);
+  const top = Math.ceil(max / step) * step;
+  const y = v => pt + (H - pt - pb) * (1 - v / top); const bw = (W - pl - pr) / items.length;
+  const kfmt = v => v >= 1e6 ? (v / 1e6).toFixed(1).replace('.0', '') + 'j' : v >= 1000 ? Math.round(v / 1000) + 'k' : v;
+  let g = '';
+  for (let v = 0; v <= top + 1e-6; v += step) g += `<line x1="${pl}" x2="${W - pr}" y1="${y(v)}" y2="${y(v)}" stroke="#ECEAE3"/><text x="${pl - 6}" y="${y(v) + 4}" font-size="11" fill="#7A847F" text-anchor="end">${kfmt(v)}</text>`;
+  items.forEach((it, i) => {
+    const w = Math.max(1.5, bw * .7), x = pl + i * bw + (bw - w) / 2;
+    if (it.v > 0) g += `<rect x="${x}" y="${y(it.v)}" width="${w}" height="${y(0) - y(it.v)}" rx="${Math.min(3, w / 3)}" fill="${it.c || '#1F7A63'}" ${it.faded ? 'fill-opacity=".45"' : ''}><title>${esc(it.tip)}</title></rect>`;
+    if (i % every === 0 || i === items.length - 1 && items.length <= 16) g += `<text x="${x + w / 2}" y="${H - 8}" font-size="11" fill="#7A847F" text-anchor="middle">${esc(it.lab)}</text>`;
+  });
+  if (avg) g += `<line x1="${pl}" x2="${W - pr}" y1="${y(avg)}" y2="${y(avg)}" stroke="#B8893A" stroke-width="1.6" stroke-dasharray="5 4"/><text x="${W - pr}" y="${y(avg) - 5}" font-size="11" fill="#8A6524" text-anchor="end" font-weight="600">Purata ${rmk(avg)}</text>`;
+  return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Carta sales">${g}</svg></div>`;
+}
+const chg = (a, b) => (!b ? '' : `<span class="chip ${a >= b ? 'ok' : 'bad'}" style="font-size:11px">${a >= b ? '▲' : '▼'} ${Math.abs((a / b - 1) * 100).toFixed(0)}%</span>`);
+const tile = (l, v, s) => `<div style="background:var(--soft);border-radius:12px;padding:10px 12px;min-width:0"><div class="xs muted">${l}</div><div class="b num" style="font-size:19px">${v}</div><div class="xs muted">${s || ''}</div></div>`;
+const wkLabel = k => { const e = addDays(k, 6); return fdateS(k) + ' – ' + fdateS(e) + (k.slice(0, 4) !== e.slice(0, 4) ? ' ' + e.slice(0, 4) : ''); };
+
+function salesHistCard() {
+  const mode = S.kwMode || 'bulan'; const L = S.live || {}; const today = L.hariIni || todayStr();
+  const days = histDays();
+  if (!days.length && !Object.keys(L.histBulan || {}).length) return `<div class="card"><div class="card-h"><h3>${ic('chart')} Sejarah sales</h3></div><div class="empty">Tiada data sejarah. Muat semula data selepas Code.gs dikemas kini.</div></div>`;
+  const seg = `<div class="seg">${[['hari', 'Harian'], ['minggu', 'Mingguan'], ['bulan', 'Bulanan'], ['tahun', 'Tahunan']].map(([k, l]) => `<button class="${mode === k ? 'on' : ''}" data-kwm="${k}">${l}</button>`).join('')}</div>`;
+  const first = days[0]?.d || Object.keys(L.histBulan || {}).sort()[0] + '-01';
+  let body = '', tiles = '', nav = '';
+  if (mode === 'hari') {
+    const months = [...new Set(days.map(r => r.d.slice(0, 7)))].sort();
+    let ym = S.kwMonth && months.includes(S.kwMonth) ? S.kwMonth : months[months.length - 1]; S.kwMonth = ym;
+    const i = months.indexOf(ym);
+    nav = `<div class="seg"><button data-kwmon="${months[i - 1] || ''}" ${i > 0 ? '' : 'disabled'}>‹</button><button class="on" style="min-width:140px">${mlabel(ym)}</button><button data-kwmon="${months[i + 1] || ''}" ${i < months.length - 1 ? '' : 'disabled'}>›</button></div>`;
+    const map = {}; days.filter(r => r.d.startsWith(ym)).forEach(r => map[r.d] = r);
+    const n = dim(ym); const list = []; for (let d = 1; d <= n; d++) { const k = ym + '-' + pad(d); list.push(map[k] || { d: k, t: 0, tt: 0, sh: 0, l: 0, none: true }); }
+    const ada = list.filter(r => !r.none && r.d <= today); const tot = ada.reduce((a, r) => a + r.t, 0);
+    const best = ada.reduce((a, r) => r.t > (a?.t || 0) ? r : a, null);
+    const prev = addMonth(ym, -1); const lastD = ada.length ? +ada[ada.length - 1].d.slice(8) : 0;
+    const prevSame = days.filter(r => r.d.startsWith(prev) && +r.d.slice(8) <= lastD).reduce((a, r) => a + r.t, 0);
+    tiles = tile('Jumlah ' + mlabel(ym).split(' ')[0], rm(tot), ada.length + ' hari ada data') + tile('Purata sehari', rmk(ada.length ? tot / ada.length : 0), '') + tile('Hari terbaik', best ? rmk(best.t) : '–', best ? fdate(best.d) : '') + tile('Bulan lepas (hari sama)', prevSame ? rmk(prevSame) : '–', prevSame ? `1–${lastD} ${mlabel(prev)} ${chg(tot, prevSame)}` : 'Tiada data');
+    body = histChart(list.map(r => ({ lab: +r.d.slice(8), v: r.t, tip: `${fdate(r.d)}: ${rm(r.t, 2)}` })), { every: 5, avg: ada.length ? tot / ada.length : null }) +
+      `<div class="tbl-wrap" style="max-height:360px;overflow:auto;margin-top:10px"><table class="tbl"><thead><tr><th>Tarikh</th><th class="r">Sales</th><th class="r hide-m">TikTok</th><th class="r hide-m">Shopee</th><th class="r hide-m">Lain</th></tr></thead><tbody>
+      ${ada.slice().reverse().map(r => `<tr><td class="nowrap">${fdate(r.d)}</td><td class="r b">${rm(r.t, 2)}</td><td class="r hide-m">${r.tt || r.sh ? rm(r.tt) : '–'}</td><td class="r hide-m">${r.tt || r.sh ? rm(r.sh) : '–'}</td><td class="r hide-m">${r.tt || r.sh ? rm(r.l) : '–'}</td></tr>`).join('') || '<tr><td colspan="5" class="empty">Tiada data</td></tr>'}</tbody></table></div>`;
+  } else if (mode === 'minggu') {
+    const ws = histAgg('minggu').filter(g => g.k <= today);
+    const cur = weekStart(today);
+    const full = ws.filter(g => g.k !== cur && g.n >= 7);
+    const avg = full.length ? full.reduce((a, g) => a + g.t, 0) / full.length : null;
+    const best = full.reduce((a, g) => g.t > (a?.t || 0) ? g : a, null);
+    const last = ws[ws.length - 1], prev = ws[ws.length - 2];
+    tiles = tile('Minggu ini', last ? rmk(last.t) : '–', last ? `${wkLabel(last.k)} · ${last.n} hari` : '') + tile('Minggu lepas', prev ? rmk(prev.t) : '–', prev ? wkLabel(prev.k) : '') + tile('Purata seminggu', avg ? rmk(avg) : '–', full.length + ' minggu penuh') + tile('Minggu terbaik', best ? rmk(best.t) : '–', best ? wkLabel(best.k) : '');
+    const show = ws.slice(-26);
+    body = histChart(show.map(g => ({ lab: fdateS(g.k), v: g.t, faded: g.n < 7, tip: `${wkLabel(g.k)}: ${rm(g.t)} (${g.n} hari data)` })), { every: 4, avg }) +
+      `<div class="xs muted" style="margin:4px 0 10px">Carta: 26 minggu terakhir (Isnin–Ahad). Bar pudar = minggu belum lengkap atau ada hari tanpa data harian.</div>
+      <div class="tbl-wrap" style="max-height:360px;overflow:auto"><table class="tbl"><thead><tr><th>Minggu</th><th class="r">Sales</th><th class="r hide-m">Purata/hari</th><th class="r">Hari</th><th class="r">vs minggu lepas</th></tr></thead><tbody>
+      ${ws.map((g, i) => ({ g, p: ws[i - 1] })).reverse().map(({ g, p }) => `<tr><td class="nowrap">${wkLabel(g.k)}</td><td class="r b">${rm(g.t)}</td><td class="r hide-m">${rmk(g.t / Math.max(1, g.n))}</td><td class="r">${g.n}/7</td><td class="r">${p && g.n >= 7 && p.n >= 7 ? chg(g.t, p.t) : ''}</td></tr>`).join('')}</tbody></table></div>`;
+  } else if (mode === 'bulan') {
+    const ms = histAgg('bulan').filter(g => g.k <= today.slice(0, 7));
+    const curM = today.slice(0, 7);
+    const full = ms.filter(g => g.k !== curM);
+    const avg = full.length ? full.reduce((a, g) => a + g.t, 0) / full.length : null;
+    const best = full.reduce((a, g) => g.t > (a?.t || 0) ? g : a, null);
+    const tot = ms.reduce((a, g) => a + g.t, 0);
+    const lastFull = full[full.length - 1], prevFull = full[full.length - 2];
+    tiles = tile('Jumlah sejak ' + mlabel(first.slice(0, 7)), rmk(tot), ms.length + ' bulan') + tile('Purata sebulan', avg ? rmk(avg) : '–', 'bulan lengkap sahaja') + tile('Bulan terbaik', best ? rmk(best.t) : '–', best ? mlabel(best.k) : '') + tile(lastFull ? mlabel(lastFull.k) : 'Bulan lepas', lastFull ? rmk(lastFull.t) : '–', prevFull ? `berbanding ${BLN[+prevFull.k.slice(5) - 1]} ${chg(lastFull.t, prevFull.t)}` : '');
+    body = histChart(ms.map(g => ({ lab: BLN[+g.k.slice(5) - 1] + (g.k.slice(5) === '01' || g === ms[0] ? ' ' + g.k.slice(2, 4) : ''), v: g.t, faded: g.k === curM, tip: `${mlabel(g.k)}: ${rm(g.t)}${g.k === curM ? ' (berjalan)' : ''}` })), { every: ms.length > 18 ? 2 : 1, avg }) +
+      `<div class="tbl-wrap" style="margin-top:10px"><table class="tbl"><thead><tr><th>Bulan</th><th class="r">Sales</th><th class="r hide-m">TikTok</th><th class="r hide-m">Shopee</th><th class="r hide-m">Lain</th><th class="r">vs bulan lepas</th></tr></thead><tbody>
+      ${ms.map((g, i) => ({ g, p: ms[i - 1] })).reverse().map(({ g, p }) => `<tr><td class="nowrap">${mlabel(g.k)}${g.k === curM ? ' <span class="chip">berjalan</span>' : ''}${g.bulanan ? ' <span class="chip gold" title="Hanya jumlah bulanan dari P&L, tiada pecahan harian">bulanan</span>' : ''}</td><td class="r b">${rm(g.t)}</td>${g.tt || g.sh ? `<td class="r hide-m">${rm(g.tt)}</td><td class="r hide-m">${rm(g.sh)}</td><td class="r hide-m">${rm(g.l)}</td>` : '<td class="r hide-m">–</td><td class="r hide-m">–</td><td class="r hide-m">–</td>'}<td class="r">${p && g.k !== curM ? chg(g.t, p.t) : ''}</td></tr>`).join('')}</tbody></table></div>`;
+  } else {
+    const ys = histAgg('tahun');
+    const rng = g => { const ms = [...g.ms].sort(); return BLN[+ms[0].slice(5) - 1] + '–' + BLN[+ms[ms.length - 1].slice(5) - 1]; };
+    tiles = ys.map(g => tile(g.k + ' (' + rng(g) + ')', rmk(g.t), `purata ${rmk(g.t / g.ms.size)} sebulan`)).join('') + (ys.length > 1 ? tile('Jumlah keseluruhan', rmk(ys.reduce((a, g) => a + g.t, 0)), 'sejak ' + mlabel(first.slice(0, 7))) : '');
+    body = histChart(ys.map(g => ({ lab: g.k, v: g.t, tip: `${g.k} (${rng(g)}): ${rm(g.t)}` })), { h: 200 }) +
+      `<div class="tbl-wrap" style="margin-top:10px"><table class="tbl"><thead><tr><th>Tahun</th><th>Tempoh</th><th class="r">Sales</th><th class="r">Purata sebulan</th><th class="r hide-m">TikTok %</th></tr></thead><tbody>
+      ${ys.slice().reverse().map(g => `<tr><td class="b">${g.k}</td><td>${rng(g)} (${g.ms.size} bulan)</td><td class="r b">${rm(g.t)}</td><td class="r">${rm(g.t / g.ms.size)}</td><td class="r hide-m">${g.t ? pct(g.tt / g.t) : '–'}</td></tr>`).join('')}</tbody></table></div>
+      <div class="xs muted" style="margin-top:8px">2025 bermula September (rekod Head Admin). Purata sebulan 2026 termasuk bulan semasa yang belum lengkap.</div>`;
+  }
+  return `<div class="card" id="kwHist"><div class="card-h" style="flex-wrap:wrap;gap:8px"><h3>${ic('chart')} Sejarah sales syarikat</h3><span class="sp"></span>${seg}</div>
+    ${nav ? `<div style="margin:-2px 0 10px">${nav}</div>` : ''}
+    <div class="grid g4" style="gap:10px;margin-bottom:10px">${tiles}</div>
+    ${body}
+    <div class="xs muted" style="margin-top:8px">Sumber: Sep–Nov 2025 dari P&L bulanan (harian) · Dis 2025 jumlah bulanan P&L sahaja · 2026 dari Company Sales & Profit Dashboard.</div></div>`;
+}
+
+function pnlRows() {
+  const L = S.live || {}; const P = L.pnl || {}; const out = {};
+  Object.keys(P).forEach(k => { const p = P[k]; const bel = num(p.kosProduk) + num(p.ads) + num(p.belanjaLain); out[k] = { k, sales: num(p.sales), ads: num(p.ads), bel, untung: num(p.untung), src: 'pnl' }; });
+  Object.keys(L.months || {}).forEach(k => { if (out[k]) return; const m = L.months[k]; if (!m.sales && !m.exp) return; out[k] = { k, sales: num(m.sales), ads: num(m.ads), bel: num(m.exp), untung: m.exp ? num(m.sales) - num(m.exp) : null, src: 'log' }; });
+  return Object.values(out).sort((a, b) => a.k.localeCompare(b.k));
+}
+function pnlCard() {
+  const rows = pnlRows(); if (!rows.length) return '';
+  const curM = (S.live?.hariIni || todayStr()).slice(0, 7);
+  const W = 720, H = 210, pl = 48, pr = 8, pt = 12, pb = 26;
+  const max = Math.max(...rows.map(r => Math.max(r.sales, r.bel))) * 1.08 || 1;
+  const step = max > 400000 ? 100000 : 50000; const top = Math.ceil(max / step) * step;
+  const y = v => pt + (H - pt - pb) * (1 - Math.max(0, v) / top); const gw = (W - pl - pr) / rows.length;
+  let g = '';
+  for (let v = 0; v <= top; v += step) g += `<line x1="${pl}" x2="${W - pr}" y1="${y(v)}" y2="${y(v)}" stroke="#ECEAE3"/><text x="${pl - 6}" y="${y(v) + 4}" font-size="11" fill="#7A847F" text-anchor="end">${v / 1000}k</text>`;
+  rows.forEach((r, i) => {
+    const x = pl + i * gw, bw = gw * .32;
+    g += `<rect x="${x + gw * .16}" y="${y(r.sales)}" width="${bw}" height="${y(0) - y(r.sales)}" rx="3" fill="#1F7A63"><title>${mlabel(r.k)} sales: ${rm(r.sales)}</title></rect>`;
+    if (r.bel) g += `<rect x="${x + gw * .16 + bw + 2}" y="${y(r.bel)}" width="${bw}" height="${y(0) - y(r.bel)}" rx="3" fill="#C9C3B3"><title>${mlabel(r.k)} perbelanjaan: ${rm(r.bel)}</title></rect>`;
+    g += `<text x="${x + gw / 2}" y="${H - 8}" font-size="11" fill="#7A847F" text-anchor="middle">${BLN[+r.k.slice(5) - 1]}</text>`;
+  });
+  return `<div class="card" style="margin-top:16px"><div class="card-h"><h3>${ic('money')} Sales, perbelanjaan & untung bulanan</h3></div>
+    <div class="chart"><svg viewBox="0 0 ${W} ${H}">${g}</svg></div>
+    <div class="legend"><span><i style="background:#1F7A63"></i>Sales</span><span><i style="background:#C9C3B3"></i>Perbelanjaan</span></div>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl cards"><thead><tr><th>Bulan</th><th class="r">Sales</th><th class="r">Ads</th><th class="r">Perbelanjaan</th><th class="r">Untung</th><th class="r">Margin</th></tr></thead><tbody>
+    ${rows.slice().reverse().map(r => `<tr><td data-l="Bulan" class="nowrap b">${mlabel(r.k)}${r.k === curM ? ' <span class="chip">berjalan</span>' : ''} <span class="xs muted">${r.src === 'pnl' ? 'P&L' : 'Expense Log'}</span></td><td data-l="Sales" class="r">${rm(r.sales)}</td><td data-l="Ads" class="r">${r.ads ? rm(r.ads) : '–'}</td><td data-l="Perbelanjaan" class="r">${r.bel ? rm(r.bel) : '–'}</td><td data-l="Untung" class="r b" style="color:${r.untung == null ? '' : r.untung >= 0 ? 'var(--ok)' : 'var(--bad)'}">${r.untung == null ? '–' : rm(r.untung)}</td><td data-l="Margin" class="r">${r.untung != null && r.sales ? pct(r.untung / r.sales) : '–'}</td></tr>`).join('')}</tbody></table></div>
+    <div class="xs muted" style="margin-top:8px"><b>P&L</b> (Sep–Dis 2025): untung bersih rasmi selepas kos produk, ads, fee TikTok, gaji & overhead. <b>Expense Log</b> (2026): sales − semua perbelanjaan direkod (termasuk ads); fee platform TikTok/Shopee yang ditolak dalam settlement belum ditolak, jadi untung sebenar lebih rendah. Bulan yang expense belum lengkap akan nampak untung terlebih.</div></div>`;
+}
+
+function vKewangan() {
+  if (!canMoney()) return '<div class="card empty">Halaman ini hanya untuk Head Admin dan Founder.</div>';
+  const L = S.live || {}; const cur = L.bulan || todayStr().slice(0, 7);
+  const m = (L.months || {})[cur] || { sales: 0, ads: 0, exp: 0 };
+  const roiT = num(T('roi', 7)); const be = num(T('break_even', 211000));
+  const cats = Object.entries(L.expCat || {}).sort((a, b) => b[1] - a[1]); const catMax = cats[0]?.[1] || 1;
+  const ytd = histAgg('tahun').find(g => g.k === cur.slice(0, 4));
+  return `
+  ${L.demo ? `<div class="banner gold">${ic('star')}<div><b>Mod preview.</b> Sejarah sales ialah angka sebenar (Sep 2025 – Okt 2026). Bila disambung, data dibaca terus dari sheet.</div></div>` : ''}
+  <div class="grid g4">
+    <div class="card"><div class="kpi-label">Sales ${mlabel(cur)}</div><div class="kpi-val num">${rmk(m.sales)}</div><div class="kpi-sub">${ytd ? 'Tahun ini ' + rmk(ytd.t) : ''}</div></div>
+    <div class="card"><div class="kpi-label">Kos ads</div><div class="kpi-val num">${rmk(m.ads)}</div><div class="kpi-sub">ROI ${m.ads ? (m.sales / m.ads).toFixed(1) : '–'} (sasaran ${roiT})</div></div>
+    <div class="card"><div class="kpi-label">Perbelanjaan</div><div class="kpi-val num">${m.exp ? rmk(m.exp) : '–'}</div><div class="kpi-sub">Break-even ${rmk(be)}</div></div>
+    <div class="card"><div class="kpi-label">Sales − perbelanjaan</div><div class="kpi-val num">${m.exp ? rmk(m.sales - m.exp) : '–'}</div><div class="kpi-sub">Sebelum fee platform</div></div>
+  </div>
+  <div style="margin-top:16px">${salesHistCard()}</div>
+  ${pnlCard()}
+  ${bayaranCard()}
+  <div class="card" style="margin-top:16px"><div class="card-h"><h3>Perbelanjaan ikut kategori</h3><span class="sp"></span><span class="xs muted">${mlabel(cur)}</span></div>
+    ${cats.length ? cats.map(([c, v]) => `<div style="padding:6px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>${esc(c)}</span><span class="num b">${rm(v)}</span></div><div class="bar" style="margin-top:4px"><i style="width:${v / catMax * 100}%;background:#B8893A"></i></div></div>`).join('') : `<div class="empty">${L.demo ? 'Akan dipaparkan dari Expenses 2026 bila disambung' : 'Tiada perbelanjaan direkod bulan ini'}</div>`}
+  </div>
+  ${marginSection()}
+  <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-go="hutang">${ic('wallet')} Hutang & Bayaran</button></div>`;
+}
+function kwSnapshot() {
+  if (!canMoney()) return '';
+  const L = S.live || {}; const cur = (L.hariIni || todayStr()); const ys = histAgg('tahun'); const y = ys.find(g => g.k === cur.slice(0, 4));
+  const ms = histAgg('bulan'); const prev = ms.find(g => g.k === addMonth(cur.slice(0, 7), -1));
+  const wk = histAgg('minggu'); const w = wk.find(g => g.k === weekStart(cur));
+  if (!ms.length) return '';
+  return `<div class="card" style="margin-top:16px;cursor:pointer" data-go="kewangan"><div class="card-h"><h3>${ic('money')} Kewangan</h3><span class="sp"></span><span class="btn ghost sm">Buka ›</span></div>
+    <div class="grid g4" style="gap:10px">${tile('Minggu ini', w ? rmk(w.t) : '–', w ? w.n + ' hari' : '')}${tile(prev ? mlabel(prev.k) : 'Bulan lepas', prev ? rmk(prev.t) : '–', '')}${tile('Tahun ' + cur.slice(0, 4), y ? rmk(y.t) : '–', y ? y.ms.size + ' bulan' : '')}${tile('Sejak ' + mlabel(ms[0].k), rmk(ms.reduce((a, g) => a + g.t, 0)), 'jumlah sales')}</div>
+    <div class="xs muted" style="margin-top:8px">Sejarah harian, mingguan, bulanan & tahunan, untung bulanan, margin dan perbelanjaan ada dalam Kewangan.</div></div>`;
+}
+
 /* ======================= VIEWS ======================= */
 const NAV = [
-  ['utama', 'Utama', 'home'], ['sales', 'Sales & Host', 'chart'], ['hutang', 'Hutang & Bayaran', 'wallet'], ['jabatan', 'Jabatan', 'dept'],
+  ['utama', 'Utama', 'home'], ['sales', 'Sales & Host', 'chart'], ['kewangan', 'Kewangan', 'money'], ['hutang', 'Hutang & Bayaran', 'wallet'], ['jabatan', 'Jabatan', 'dept'],
   ['projek', 'Projek & Tugasan', 'proj'], ['laporan', 'Laporan', 'rep'], ['isu', 'Isu & Arahan', 'issue'],
   ['pautan', 'Pautan Sistem', 'link'], ['tetapan', 'Tetapan', 'set']
 ];
-const BNAV = [['utama', 'Utama', 'home'], ['sales', 'Sales', 'chart'], ['jabatan', 'Jabatan', 'dept'], ['laporan', 'Laporan', 'rep'], ['lagi', 'Lagi', 'more']];
+const BNAV_STAF = [['utama', 'Utama', 'home'], ['sales', 'Sales', 'chart'], ['jabatan', 'Jabatan', 'dept'], ['laporan', 'Laporan', 'rep'], ['lagi', 'Lagi', 'more']];
+const BNAV_KW = [['utama', 'Utama', 'home'], ['sales', 'Sales', 'chart'], ['kewangan', 'Kewangan', 'money'], ['jabatan', 'Jabatan', 'dept'], ['lagi', 'Lagi', 'more']];
+const bnav = () => canMoney() ? BNAV_KW : BNAV_STAF;
+const LAGI = () => canMoney() ? [['laporan', 'Laporan Jabatan', 'rep'], ['hutang', 'Hutang & Bayaran', 'wallet'], ['projek', 'Projek & Tugasan', 'proj'], ['isu', 'Isu & Arahan', 'issue'], ['pautan', 'Pautan Sistem', 'link'], ['tetapan', 'Tetapan', 'set']] : [['projek', 'Projek & Tugasan', 'proj'], ['isu', 'Isu & Arahan', 'issue'], ['pautan', 'Pautan Sistem', 'link'], ['tetapan', 'Tetapan', 'set']];
 
 function greet() { const h = new Date().getHours(); return h < 12 ? 'Selamat pagi' : h < 15 ? 'Selamat tengah hari' : h < 19 ? 'Selamat petang' : 'Selamat malam'; }
 
@@ -929,7 +1110,7 @@ function vUtama() {
     <div class="card"><div class="card-h"><h3>Ikut platform</h3></div>${platBlock(mm)}</div>
   </div>
   ${bayaranCard()}
-  ${marginCard()}
+  ${kwSnapshot()}
   <div class="card-h" style="margin:22px 0 12px"><h3 style="font-size:17px">Status jabatan</h3><span class="sp"></span><button class="btn ghost sm" data-go="jabatan">Lihat semua</button></div>
   ${deptGrid()}
   <div class="grid g3" style="margin-top:16px">
@@ -941,7 +1122,6 @@ function vUtama() {
     <div class="card"><div class="card-h"><h3>${ic('issue')} Isu terbuka</h3><span class="sp"></span><button class="btn ghost sm" data-go="isu">Semua</button></div>
       <div class="list">${isu.length ? isu.map(i => `<div class="li"><span class="chip ${i.tahap === 'Tinggi' ? 'bad' : i.tahap === 'Sederhana' ? 'warn' : ''}">${esc(i.tahap)}</span><div class="grow small">${esc(i.tajuk)}${i.status === PEND ? ' <span class="chip gold">Menunggu sah</span>' : ''}</div></div>`).join('') : '<div class="empty">Tiada isu terbuka 🎉</div>'}</div></div>
   </div>
-  <div style="margin-top:16px">${monthsChart()}</div>
   <div class="card" style="margin-top:16px"><div class="card-h"><h3>${ic('rep')} Laporan terkini</h3><span class="sp"></span><button class="btn ghost sm" data-go="laporan">Semua laporan</button></div>
     ${reps.length ? `<div class="list">${reps.map(r => { const j = jabById(r.jabatanId); return `<div class="li" style="cursor:pointer" data-go="laporan"><span class="dept-ic" style="width:34px;height:34px;font-size:16px;background:${(j?.warna || '#888')}22">${esc(j?.ikon || '•')}</span><div class="grow"><div class="ttl">${esc(j?.nama || '')} <span class="chip ${repSt(r.status)}">${esc(r.status)}</span></div><div class="small muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.pencapaian)}</div></div><span class="xs muted nowrap">${fdateS(r.tarikh)}</span></div>`; }).join('')}</div>` : `<div class="empty">Belum ada laporan. Ketua jabatan boleh hantar laporan harian/mingguan di tab Laporan.</div>`}
   </div>`;
@@ -974,8 +1154,8 @@ function vSales() {
   <div class="grid g4">
     <div class="card"><div class="kpi-label">Sales</div><div class="kpi-val num">${rmk(mm.sales)}</div><div class="kpi-sub">${pct(mm.sales / mm.tMin)} daripada min ${rmk(mm.tMin)}</div></div>
     <div class="card"><div class="kpi-label">Kos ads</div><div class="kpi-val num">${rmk(mm.ads)}</div><div class="kpi-sub">ROI ${mm.roi ? mm.roi.toFixed(1) : '–'} (sasaran ${roiT})</div></div>
-    <div class="card"><div class="kpi-label">Perbelanjaan</div><div class="kpi-val num">${mm.exp ? rmk(mm.exp) : '–'}</div><div class="kpi-sub">Break-even ${rmk(T('break_even', 211000))}</div></div>
-    <div class="card"><div class="kpi-label">Sales − perbelanjaan</div><div class="kpi-val num">${mm.exp ? rmk(mm.sales - mm.exp) : '–'}</div><div class="kpi-sub">Anggaran kasar (expense mungkin belum lengkap)</div></div>
+    <div class="card"><div class="kpi-label">Unit terjual</div><div class="kpi-val num">${(mm.m.items || 0).toLocaleString('en-MY')}</div><div class="kpi-sub">${mm.dayNo ? mm.dayNo + ' hari data' : ''}</div></div>
+    <div class="card"><div class="kpi-label">Purata sehari</div><div class="kpi-val num">${mm.dayNo ? rmk(mm.sales / mm.dayNo) : '–'}</div><div class="kpi-sub">Target harian ${rmk(mm.dailyTarget)}</div></div>
   </div>
   <div class="grid g21" style="margin-top:16px">
     <div class="card"><div class="card-h"><h3>Sales harian</h3></div>${dailyChart(mm)}</div>
@@ -987,16 +1167,12 @@ function vSales() {
     <tr style="background:var(--soft)"><td data-l="Jumlah" class="b">Jumlah</td><td data-l="Sesi" class="r b">${hosts.reduce((a, b) => a + b.sesi, 0)}</td><td data-l="Jam" class="r b">${Math.round(hosts.reduce((a, b) => a + num(b.jam), 0))}</td><td data-l="Sales" class="r b">${rm(tS)}</td><td data-l="Target" class="r b">${rm(tT)}</td><td data-l="Performance" class="b right">${pct(tT ? tS / tT : null)}</td><td data-l="ROI" class="r b">${tC ? (tS / tC).toFixed(1) : '–'}</td></tr>
     </tbody></table></div><div class="xs muted" style="margin-top:8px">Performance = jumlah sales ÷ jumlah target. ROI = sales ÷ cost ads. Host muka RM1,000/sesi, host tangan RM500/sesi.</div>` : '<div class="empty">Tiada data host untuk bulan ini</div>'}
   </div>
-  ${marginSection()}
-  <div class="grid g2" style="margin-top:16px">
+  <div style="margin-top:16px">
     <div class="card"><div class="card-h"><h3>Rekod harian</h3></div><div class="tbl-wrap" style="max-height:420px;overflow:auto"><table class="tbl"><thead><tr><th>Tarikh</th><th class="r">Sales</th><th class="r">Ads</th><th class="r">ROI</th><th class="r">Unit</th></tr></thead><tbody>
       ${days.map(d => { const x = L.daily[d]; return `<tr><td class="nowrap">${fdateS(d)}</td><td class="r">${rm(x.sales)}</td><td class="r">${rm(x.ads)}</td><td class="r">${x.ads ? (x.sales / x.ads).toFixed(1) : '–'}</td><td class="r">${x.items || 0}</td></tr>`; }).join('') || '<tr><td colspan="5" class="empty">Tiada data</td></tr>'}
     </tbody></table></div></div>
-    <div class="card"><div class="card-h"><h3>Perbelanjaan ikut kategori</h3><span class="sp"></span><span class="xs muted">${mlabel(L.bulan || mm.cur)}</span></div>
-      ${cats.length ? cats.map(([c, v]) => `<div style="padding:6px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>${esc(c)}</span><span class="num b">${rm(v)}</span></div><div class="bar" style="margin-top:4px"><i style="width:${v / catMax * 100}%;background:#B8893A"></i></div></div>`).join('') : `<div class="empty">${L.demo ? 'Akan dipaparkan dari Expenses 2026 bila disambung' : 'Tiada perbelanjaan direkod bulan ini'}</div>`}
-    </div>
   </div>
-  <div style="margin-top:16px">${monthsChart()}</div>`;
+  ${canMoney() ? `<div class="banner info" style="margin-top:16px;cursor:pointer" data-go="kewangan">${ic('money')}<div>Sejarah sales (harian/mingguan/bulanan/tahunan), untung bulanan, margin dan perbelanjaan kini di <b>Kewangan</b>.</div></div>` : ''}`;
 }
 
 function vJabatan() {
@@ -1168,15 +1344,15 @@ function vLogin() {
 function render() {
   const app = $('#app');
   if (!S.user) { app.innerHTML = vLogin(); bindLogin(); return; }
-  const titles = { utama: `${greet()}, ${S.user.nama.split(' ')[0] === "Dato'" ? S.user.nama : S.user.nama.split(' ')[0]}`, sales: 'Sales & Host Live', hutang: 'Hutang & Bayaran', jabatan: S.jab ? 'Jabatan' : 'Jabatan', projek: 'Projek & Tugasan', laporan: 'Laporan Jabatan', isu: 'Isu & Arahan', pautan: 'Pautan Sistem', tetapan: 'Tetapan' };
+  const titles = { utama: `${greet()}, ${S.user.nama.split(' ')[0] === "Dato'" ? S.user.nama : S.user.nama.split(' ')[0]}`, sales: 'Sales & Host Live', kewangan: 'Kewangan', hutang: 'Hutang & Bayaran', jabatan: S.jab ? 'Jabatan' : 'Jabatan', projek: 'Projek & Tugasan', laporan: 'Laporan Jabatan', isu: 'Isu & Arahan', pautan: 'Pautan Sistem', tetapan: 'Tetapan' };
   const nIsu = role() === 'founder' ? isuPending().length : openIsu().filter(i => i.tahap === 'Tinggi').length;
   let nLewat = 0; try { nLewat = canMoney() ? ringkasBayaran().lewat.length : 0; } catch (e) {}
-  const views = { utama: vUtama, sales: vSales, hutang: vHutang, jabatan: vJabatan, projek: vProjek, laporan: vLaporan, isu: vIsu, pautan: vPautan, tetapan: vTetapan };
+  const views = { utama: vUtama, sales: vSales, kewangan: vKewangan, hutang: vHutang, jabatan: vJabatan, projek: vProjek, laporan: vLaporan, isu: vIsu, pautan: vPautan, tetapan: vTetapan };
   let body; try { body = (views[S.view] || vUtama)(); } catch (e) { console.error(e); body = `<div class="card empty">Ralat memaparkan halaman: ${esc(e.message)}</div>`; }
   const syncBtn = `<button class="icon-btn" id="syncBtn" title="Muat semula data">${S.syncing ? '<span class="spin"></span>' : ic('sync')}</button>`;
   app.innerHTML = `<div class="shell">
     <aside class="side"><div class="brandrow"><div class="logo">MD</div><div>Head Company<small>${esc(T('nama', 'Mama Dhia Trading'))}</small></div></div>
-      ${NAV.filter(([k]) => k !== 'hutang' || canMoney()).map(([k, l, i]) => `<button class="nav ${S.view === k ? 'on' : ''}" data-go="${k}">${ic(i)} ${l}${k === 'isu' && nIsu ? `<span class="cnt">${nIsu}</span>` : ''}${k === 'hutang' && nLewat ? `<span class="cnt">${nLewat}</span>` : ''}</button>`).join('')}
+      ${NAV.filter(([k]) => !['hutang', 'kewangan'].includes(k) || canMoney()).map(([k, l, i]) => `<button class="nav ${S.view === k ? 'on' : ''}" data-go="${k}">${ic(i)} ${l}${k === 'isu' && nIsu ? `<span class="cnt">${nIsu}</span>` : ''}${k === 'hutang' && nLewat ? `<span class="cnt">${nLewat}</span>` : ''}</button>`).join('')}
       <div class="side-foot"><div class="who">${esc(S.user.nama)}</div><div class="xs">${{ admin: 'Head Admin', founder: 'Founder', staf: 'Staf' }[role()]}</div><button class="nav" id="logout" style="padding:8px 0;margin-top:6px">${ic('out')} Log keluar</button></div></aside>
     <div class="mtop"><div class="logo" style="width:34px;height:34px;font-size:12px">MD</div><div class="t">${S.view === 'utama' ? 'Head Company' : esc(titles[S.view])}<small>${esc(T('nama', 'Mama Dhia Trading'))}${S.lastSync ? ' · ' + ago(S.lastSync) : ''}</small></div>${syncBtn.replace('id="syncBtn"', 'id="syncBtnM"')}</div>
     <main class="main">
@@ -1184,7 +1360,7 @@ function render() {
       ${S.err ? `<div class="banner bad">${ic('issue')}<div>${esc(S.err)} — memaparkan data terakhir yang disimpan.</div></div>` : ''}
       ${body}
     </main>
-    <nav class="bnav">${BNAV.map(([k, l, i]) => `<button class="${S.view === k || (k === 'lagi' && ['hutang', 'projek', 'isu', 'pautan', 'tetapan'].includes(S.view)) ? 'on' : ''}" data-go="${k}">${ic(i)}<span>${l}</span>${k === 'lagi' && (nIsu + nLewat) ? `<span class="cnt">${nIsu + nLewat}</span>` : ''}</button>`).join('')}</nav>
+    <nav class="bnav">${bnav().map(([k, l, i]) => `<button class="${S.view === k || (k === 'lagi' && LAGI().some(([x]) => x === S.view)) ? 'on' : ''}" data-go="${k}">${ic(i)}<span>${l}</span>${k === 'lagi' && (nIsu + nLewat) ? `<span class="cnt">${nIsu + nLewat}</span>` : ''}</button>`).join('')}</nav>
   </div>`;
   bindApp();
 }
@@ -1192,7 +1368,7 @@ function render() {
 /* ======================= EVENTS ======================= */
 function go(v) {
   if (v === 'lagi') {
-    const o = modal('Menu', `<div class="sheet-menu">${[...(canMoney() ? [['hutang', 'Hutang & Bayaran', 'wallet']] : []), ['projek', 'Projek & Tugasan', 'proj'], ['isu', 'Isu & Arahan', 'issue'], ['pautan', 'Pautan Sistem', 'link'], ['tetapan', 'Tetapan', 'set']].map(([k, l, i]) => `<button data-m="${k}">${ic(i)} ${l}</button>`).join('')}<button data-m="out" style="color:var(--bad)">${ic('out')} Log keluar</button></div>`);
+    const o = modal('Menu', `<div class="sheet-menu">${LAGI().map(([k, l, i]) => `<button data-m="${k}">${ic(i)} ${l}</button>`).join('')}<button data-m="out" style="color:var(--bad)">${ic('out')} Log keluar</button></div>`);
     o.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { closeModal(); b.dataset.m === 'out' ? logout() : go(b.dataset.m); });
     return;
   }
@@ -1206,7 +1382,7 @@ function bindLogin() {
   const submit = async () => {
     if (pin.length < 4) { $('#pinErr').textContent = 'PIN sekurang-kurangnya 4 digit'; return; }
     $('#pinErr').innerHTML = '<span class="spin"></span>';
-    try { await login(pin); S.view = (location.hash || '').slice(1) || 'utama'; if (!['utama', 'sales', 'hutang', 'jabatan', 'projek', 'laporan', 'isu', 'pautan', 'tetapan'].includes(S.view)) S.view = 'utama'; render(); }
+    try { await login(pin); S.view = (location.hash || '').slice(1) || 'utama'; if (!['utama', 'sales', 'kewangan', 'hutang', 'jabatan', 'projek', 'laporan', 'isu', 'pautan', 'tetapan'].includes(S.view)) S.view = 'utama'; render(); }
     catch (e) { $('#pinErr').textContent = e.message; pin = ''; dots(); }
   };
   const press = k => {
@@ -1225,6 +1401,8 @@ function bindApp() {
   ['#logout', '#logout2'].forEach(s => { const b = $(s); if (b) b.onclick = logout; });
   document.querySelectorAll('[data-jab]').forEach(c => c.onclick = () => { S.view = 'jabatan'; S.jab = c.dataset.jab; render(); window.scrollTo(0, 0); });
   const on = (sel, fn) => document.querySelectorAll(sel).forEach(el => el.onclick = e => { e.preventDefault(); fn(el, e); });
+  on('[data-kwm]', el => { S.kwMode = el.dataset.kwm; render(); });
+  on('[data-kwmon]', el => { if (el.dataset.kwmon) { S.kwMode = 'hari'; S.kwMonth = el.dataset.kwmon; render(); } });
   const v = $('#mSel'); if (v) v.onchange = () => { S.salesMonth = v.value; render(); };
   const rf = $('#repF'); if (rf) rf.onchange = () => { S.repFilter = rf.value; render(); };
   on('#jabBack', () => { S.jab = null; render(); });
